@@ -1,0 +1,21 @@
+# The configuration for each message of SellMe
+
+# Use & instead of double S for a quicker colorizing of texts
+prefix: '&l&d[SellMe]'
+
+# seperator seperates the message from the prefix
+# Format looks like:
+# {prefix} {seperator} {message}
+# the spaces are automatically added so you dont have to worry about that too :))
+seperator: '&e=> &b'
+
+# The placeholders which you can use are
+# {COUNT} =>  Number of items (hand, all)
+# {ITEM} => Item Name which is sold (hand, all)
+
+messages:
+  sell:
+    hand: "sold the {COUNT}x {ITEM} in your hand for {AMOUNT}"
+    all: "sold all the {COUNT}x {ITEM} in your inventory for {AMOUNT}"
+    inv: "sold all the items in your inventory for {AMOUNT}"
+    error: "There was an error selling the item"

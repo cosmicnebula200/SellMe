@@ -1,0 +1,10 @@
+sell-form:
+  title: "&l&dSell Form"
+  hand: "&l&dSell Hand"
+  all: "&l&dSell All"
+  inv: "&l&dSell Inventory"
+
+autosell-form:
+  title: "&l&dAutoSell Form"
+  on: "&l&dOn"
+  off: "&l&dOff"

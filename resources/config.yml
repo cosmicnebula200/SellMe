@@ -1,0 +1,13 @@
+# config for SellMe by cosmicnebula200
+
+# Economy provider
+# the possible values for this currently are
+# 1. BedrockEconomy
+# 2. Capital
+# 3. EconomyAPI
+economy-provider: BedrockEconomy
+
+# DO NOT TOUCH IF YOU DONT KNOW WHAT YOU ARE DOING
+# BY DEFAULT SELECTOR ENTRY IS EMPTY
+capital-settings:
+  selector:
