@@ -3,6 +3,7 @@ author: cosmicnebula200
 api: 4.0.0
 main: cosmicnebula200\SellMe\SellMe
 version: 1.0.0
+softdepend: ['BedrockEconomy', 'Capital', 'EconomyAPI']
 
 permissions:
   sellme.command.sell:
