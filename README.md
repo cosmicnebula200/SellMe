@@ -42,6 +42,6 @@ AutoSell | AutoSell command | sellme.command.autosell | AS |
 
 SubCommand | Description | Permission | Aliases |
 ----------------- | ------------- | ------------- | -------- |
-Hand | sells the item which is held by the user  | sellme.subcommand.hand | h |
-all | sells the items in inventory which are similar to the one in the users hands | sellme.subcommand.all | a |
-inv | sells all the items in the inventory of the user | sellme.subcommand.hand | i, inventory |
+Hand | Sells the item which is held by the user  | sellme.subcommand.hand | h |
+All | Sells the items in inventory which are similar to the one in the users hands | sellme.subcommand.all | a |
+Inv | Sells all the items in the inventory of the user | sellme.subcommand.hand | i, inventory |
