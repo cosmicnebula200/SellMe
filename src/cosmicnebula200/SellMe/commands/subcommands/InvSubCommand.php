@@ -23,13 +23,18 @@ class InvSubCommand extends BaseSubCommand
             return;
         $inv = $sender->getInventory();
         $amount = 0;
-        foreach ($inv->getContents() as $slot => $item)
+        foreach ($inv->getContents() as $index => $item)
         {
-            if (Utils::getAmount($item) === 0)
-                continue;
-            Utils::sellItem($sender, $item);
-            $amount += Utils::getAmount($item) * $item->getCount();
-            $inv->setItem($slot, VanillaBlocks::AIR()->asItem());
+            if (Utils::getAmount($item) !== 0)
+            {
+                $amount += Utils::getAmount($item);
+                $inv->setItem($index, VanillaBlocks::AIR()->asItem());
+            }
+        }
+        if ($amount == 0)
+        {
+            $sender->sendMessage(SellMe::$messages->getMessage('sell.error'));
+            return;
         }
         $sender->sendMessage(SellMe::$messages->getMessage('sell.inv',[
             'amount' => $amount

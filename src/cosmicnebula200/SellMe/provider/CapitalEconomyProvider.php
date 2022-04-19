@@ -41,16 +41,14 @@ class CapitalEconomyProvider extends EconomyProvider
             {
                 try {
                     yield from $api->addMoney(
-                        "Sell",
+                        "SellMe",
                         $player,
                         $this->selector,
                         $amount,
                         new LabelSet(["reason" => "selling items"]),
                     );
-
-                    var_dump('SUCCESS');
                 }catch (CapitalException){
-                    var_dump("NO");
+
                 }
             });
     }

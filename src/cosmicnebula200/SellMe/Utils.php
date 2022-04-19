@@ -2,6 +2,7 @@
 
 namespace cosmicnebula200\SellMe;
 
+use pocketmine\block\VanillaBlocks;
 use pocketmine\item\Item;
 use pocketmine\player\Player;
 
