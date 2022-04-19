@@ -27,7 +27,7 @@ class InvSubCommand extends BaseSubCommand
         {
             if (Utils::getAmount($item) !== 0)
             {
-                $amount += Utils::getAmount($item);
+                $amount += (Utils::getAmount($item) * $item->getCount());
                 $inv->setItem($index, VanillaBlocks::AIR()->asItem());
             }
         }
