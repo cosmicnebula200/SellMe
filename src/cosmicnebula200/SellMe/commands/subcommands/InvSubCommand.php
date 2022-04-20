@@ -14,7 +14,7 @@ class InvSubCommand extends BaseSubCommand
 
     protected function prepare(): void
     {
-        $this->setPermission('sellme.subcommand.inv');
+        $this->setPermission('sellme.command.sell.inv');
     }
 
     public function onRun(CommandSender $sender, string $aliasUsed, array $args): void

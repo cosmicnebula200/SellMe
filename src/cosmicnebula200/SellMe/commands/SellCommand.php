@@ -17,7 +17,11 @@ class SellCommand extends BaseCommand
 
     protected function prepare(): void
     {
-        $this->setPermission('sellme.command.sell');
+        $this->setPermission(
+            'sellme.command.sell.hand;'.
+            'sellme.command.sell.all;'.
+            'sellme.command.sell.inv'
+        );
         $this->registerSubCommand(new HandSubCommand('hand', 'sells the item which is held by the user', ['h']));
         $this->registerSubCommand(new AllSubCommand('all', 'sells the items in inventory which are similar to the one in the users hands', ['a']));
         $this->registerSubCommand(new InvSubCommand('inv', 'sells all the items in the inventory of the user', ['inventory', 'i']));
@@ -39,9 +43,15 @@ class SellCommand extends BaseCommand
             SellMe::getInstance()->getServer()->dispatchCommand($player, "sell $command");
         });
         $form->setTitle(TextFormat::colorize(SellMe::$forms->getNested('sell-form.title' , '&l&dSell Form')));
-        $form->addButton(TextFormat::colorize(SellMe::$forms->getNested('sell-form.hand' , '&l&dSell Hand')));
-        $form->addButton(TextFormat::colorize(SellMe::$forms->getNested('sell-form.all' , '&l&dSell All')));
-        $form->addButton(TextFormat::colorize(SellMe::$forms->getNested('sell-form.inv' , '&l&dSell Inv')));
+        if($sender->hasPermission('sellme.command.sell.hand')){
+           $form->addButton(TextFormat::colorize(SellMe::$forms->getNested('sell-form.hand' , '&l&dSell Hand')));
+        }
+        if($sender->hasPermission('sellme.command.sell.all')){
+            $form->addButton(TextFormat::colorize(SellMe::$forms->getNested('sell-form.all' , '&l&dSell All')));
+        }
+        if($sender->hasPermission('sellme.command.sell.inv')){
+            $form->addButton(TextFormat::colorize(SellMe::$forms->getNested('sell-form.inv' , '&l&dSell Inv')));
+        }
         $form->sendToPlayer($sender);
 
     }
