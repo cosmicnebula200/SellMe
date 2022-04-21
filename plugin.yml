@@ -6,16 +6,13 @@ version: 1.0.0
 softdepend: ['BedrockEconomy', 'Capital', 'EconomyAPI']
 
 permissions:
-  sellme.command.sell:
-    default: true
-    description: with this permission the player can use the sell command
-  sellme.subcommand.hand:
+  sellme.command.sell.hand:
     default: true
     description: with this permission the player sell his/her hand
-  sellme.subcommand.all:
+  sellme.command.sell.all:
     default: true
     description: with this permission the player sell all items in his/her inv which are similar to his current item in hand
-  sellme.subcommand.inv:
+  sellme.command.sell.inv:
     default: true
     description: with this permission the player can sell his/her inventory
   sellme.command.autosell:

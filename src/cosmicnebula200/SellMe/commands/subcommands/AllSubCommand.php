@@ -14,7 +14,7 @@ class AllSubCommand extends BaseSubCommand
 
     protected function prepare(): void
     {
-        $this->setPermission('sellme.subcommand.all');
+        $this->setPermission('sellme.command.sell.all');
     }
 
     public function onRun(CommandSender $sender, string $aliasUsed, array $args): void

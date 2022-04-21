@@ -14,7 +14,7 @@ class HandSubCommand extends BaseSubCommand
 
     protected function prepare(): void
     {
-        $this->setPermission('sellme.subcommand.hand');
+        $this->setPermission('sellme.command.sell.hand');
     }
 
     public function onRun(CommandSender $sender, string $aliasUsed, array $args): void
