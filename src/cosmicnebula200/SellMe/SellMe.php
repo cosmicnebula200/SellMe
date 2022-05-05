@@ -67,7 +67,7 @@ class SellMe extends PluginBase
         $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);
 
         $this->getServer()->getCommandMap()->register('SellMe', new SellCommand($this, 'sell', 'Sell command'));
-        $this->getServer()->getCommandMap()->register('AutoSell', new AutoSellCommand($this, 'autosell', 'Toggle AutoSell', ['as']));
+        $this->getServer()->getCommandMap()->register('SellMe', new AutoSellCommand($this, 'autosell', 'Toggle AutoSell', ['as']));
 
         if (!PacketHooker::isRegistered())
             PacketHooker::register($this);
