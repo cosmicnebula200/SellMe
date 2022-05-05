@@ -7,10 +7,10 @@ use cosmicnebula200\SellMe\commands\subcommands\AllSubCommand;
 use cosmicnebula200\SellMe\commands\subcommands\HandSubCommand;
 use cosmicnebula200\SellMe\commands\subcommands\InvSubCommand;
 use cosmicnebula200\SellMe\SellMe;
-use jojoe77777\FormAPI\SimpleForm;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
 use pocketmine\utils\TextFormat;
+use Vecnavium\FormsUI\SimpleForm;
 
 class SellCommand extends BaseCommand
 {

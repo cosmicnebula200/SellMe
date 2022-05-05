@@ -4,10 +4,10 @@ namespace cosmicnebula200\SellMe\commands;
 
 use CortexPE\Commando\BaseCommand;
 use cosmicnebula200\SellMe\SellMe;
-use jojoe77777\FormAPI\SimpleForm;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
 use pocketmine\utils\TextFormat;
+use Vecnavium\FormsUI\SimpleForm;
 
 class AutoSellCommand extends BaseCommand
 {
