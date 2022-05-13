@@ -5,6 +5,7 @@ branches:
 projects:
   SellMe:
     path: ""
+    icon: 'sell.png'
     lint:
       phpstan: false
     libs:
