@@ -3,6 +3,11 @@ sell-form:
   hand: "&l&dSell Hand"
   all: "&l&dSell All"
   inv: "&l&dSell Inventory"
+  list: "&l&dSell List"
+
+sell-list:
+  title: "&l&dSell List"
+  label: "&7[&a*&7]&e {ITEM}&e: &a{PRICE}"
 
 autosell-form:
   title: "&l&dAutoSell Form"
