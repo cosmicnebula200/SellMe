@@ -3,10 +3,13 @@
 namespace cosmicnebula200\SellMe\commands;
 
 use CortexPE\Commando\BaseCommand;
+use cosmicnebula200\SellMe\commands\subcommands\AddSubCommand;
 use cosmicnebula200\SellMe\commands\subcommands\AllSubCommand;
+use cosmicnebula200\SellMe\commands\subcommands\CheckSubCommand;
 use cosmicnebula200\SellMe\commands\subcommands\HandSubCommand;
 use cosmicnebula200\SellMe\commands\subcommands\InvSubCommand;
 use cosmicnebula200\SellMe\commands\subcommands\ListSubCommand;
+use cosmicnebula200\SellMe\commands\subcommands\OverwriteSubCommand;
 use cosmicnebula200\SellMe\SellMe;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
@@ -22,12 +25,17 @@ class SellCommand extends BaseCommand
             'sellme.command.sell.hand;'.
             'sellme.command.sell.all;'.
             'sellme.command.sell.inv;'.
-            'sellme.command.sell.list'
+            'sellme.command.sell.list;'.
+            'sellme.command.sell.add;'.
+            'sellme.command.sell.check'
         );
-        $this->registerSubCommand(new HandSubCommand('hand', 'sells the item which is held by the user', ['h']));
-        $this->registerSubCommand(new AllSubCommand('all', 'sells the items in inventory which are similar to the one in the users hands', ['a']));
-        $this->registerSubCommand(new InvSubCommand('inv', 'sells all the items in the inventory of the user', ['inventory', 'i']));
+        $this->registerSubCommand(new HandSubCommand('hand', 'Sells the item which is held by the user', ['h']));
+        $this->registerSubCommand(new AllSubCommand('all', 'Sells the items in inventory which are similar to the one in the users hands', ['a']));
+        $this->registerSubCommand(new InvSubCommand('inv', 'Sells all the items in the inventory of the user', ['inventory', 'i']));
         $this->registerSubCommand(new ListSubCommand('list', 'View available items/prices', ['l']));
+        $this->registerSubCommand(new CheckSubCommand('check', 'Checks the amount that you can receive after using the sell command', ['c']));
+        $this->registerSubCommand(new AddSubCommand('add', 'Adds the item in hand to the list of current prices'));
+        $this->registerSubCommand(new OverwriteSubCommand('overwrite', 'Overwrites the item price in the list of current prices'));
     }
 
     public function onRun(CommandSender $sender, string $aliasUsed, array $args): void

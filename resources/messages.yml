@@ -19,3 +19,7 @@ messages:
     all: "sold all the {COUNT}x {ITEM} in your inventory for {AMOUNT}"
     inv: "sold all the items in your inventory for {AMOUNT}"
     error: "There was an error selling the item"
+    error-adding: "The item already exits in prices, you can use '/sell overwrite' command to overwrite the price"
+    added: "Added {ITEM} for {AMOUNT} to the list of prices"
+    non-positive: "The price can not be a non positive integer"
+    check: "The total price of your {TYPE} is {AMOUNT}"

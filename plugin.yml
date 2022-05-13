@@ -2,7 +2,7 @@ name: SellMe
 author: cosmicnebula200
 api: 4.0.0
 main: cosmicnebula200\SellMe\SellMe
-version: 1.0.0
+version: 1.1.0
 softdepend: ['BedrockEconomy', 'Capital', 'EconomyAPI']
 
 permissions:
@@ -18,6 +18,15 @@ permissions:
   sellme.command.sell.list:
     default: true
     description: with this permission the player can view sell listing
+  sellme.command.sell.add:
+    default: op
+    description: with this permission the player can add items to the sell prices
+  sellme.command.sell.overwrite:
+    default: op
+    description: with this permission the player can overwrite the prices of the items from the list of prices
+  sellme.command.sell.check:
+    default: true
+    description: with this permission the player can view the price of the items in their inventory
   sellme.command.autosell:
     default: true
     description: with this permission the player can toggle his autosell status

@@ -34,4 +34,41 @@ class Utils
         $item = ItemFactory::getInstance()->get($id, $meta);
         return $item->getName();
     }
+    
+    public static function addToPrices(Player $player, int $price, bool $overwrite = false): void
+    {
+        $item = $player->getInventory()->getItemInHand();
+        if (!$overwrite){
+            if (Utils::getAmount($item) !== 0) {
+                $player->sendMessage(SellMe::$messages->getMessage(
+                    'sell.error-adding',
+                    [],
+                    "The item already exits in prices, you can use '/sell overwrite' command to overwrite the price"
+                ));
+                return;
+            }
+        }
+        if ($price <= 0)
+        {
+            $player->sendMessage(SellMe::$messages->getMessage(
+                'sell.non-positive',
+                [],
+                "The price can not be a non positive integer"
+            ));
+            return;
+        }
+        $string = $item->getMeta() == 0 ? "{$item->getId()}" : "{$item->getId()}:{$item->getMeta()}";
+        SellMe::$prices->setNested("prices.$string", $price);
+        SellMe::$prices->save();
+        SellMe::$prices->reload();
+        $player->sendMessage(SellMe::$messages->getMessage(
+            'sell.added',
+            [
+                'item' => $item->getName(),
+                'amount' => $price
+            ],
+            'Added {ITEM} for {AMOUNT} to the list of prices'
+        ));
+    }
+    
 }

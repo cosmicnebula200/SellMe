@@ -13,18 +13,28 @@ The currently offered features are as follows
 
 # Permissions
 ```
-  sellme.command.sell:
-    default: true
-    description: with this permission the player can use the sell command
-  sellme.subcommand.hand:
+permissions:
+  sellme.command.sell.hand:
     default: true
     description: with this permission the player sell his/her hand
-  sellme.subcommand.all:
+  sellme.command.sell.all:
     default: true
     description: with this permission the player sell all items in his/her inv which are similar to his current item in hand
-  sellme.subcommand.inv:
+  sellme.command.sell.inv:
     default: true
     description: with this permission the player can sell his/her inventory
+  sellme.command.sell.list:
+    default: true
+    description: with this permission the player can view sell listing
+  sellme.command.sell.add:
+    default: op
+    description: with this permission the player can add items to the sell prices
+  sellme.command.sell.overwrite:
+    default: op
+    description: with this permission the player can overwrite the prices of the items from the list of prices
+  sellme.command.sell.check:
+    default: true
+    description: with this permission the player can view the price of the items in their inventory
   sellme.command.autosell:
     default: true
     description: with this permission the player can toggle his autosell status
@@ -33,15 +43,19 @@ The currently offered features are as follows
 # Commands
 Command | Description | Permission | Aliases |
 ----------------- | ------------- | ------------- | -------- |
-Sell | Sell command | sellme.command.sell | |
-AutoSell | AutoSell command | sellme.command.autosell | AS |
+`Sell` | Sell command | sellme.command.sell | |
+`AutoSell` | AutoSell command | sellme.command.autosell | AS |
 
 # SubCommands
 
 **SELL**
 
-SubCommand | Description | Permission | Aliases |
------------------ | ------------- | ------------- | -------- |
-Hand | Sells the item which is held by the user  | sellme.subcommand.hand | h |
-All | Sells the items in inventory which are similar to the one in the users hands | sellme.subcommand.all | a |
-Inv | Sells all the items in the inventory of the user | sellme.subcommand.hand | i, inventory |
+SubCommand | Description                                                             | Permission                | Aliases      |
+----------------- |-------------------------------------------------------------------------|---------------------------|--------------|
+`Hand` | Sells the item which is held by the user | sellme.command.sell.hand  | h |
+`All` | Sells the items in inventory which are similar to the one in the users hands | sellme.command.sell.all   | a |
+`Inv` | Sells all the items in the inventory of the user  | sellme.command.sell.hand  | i, inventory |
+`List` | View available items/prices | sellme.command.sell.list  | l |
+`Check` | Checks the amount that you can receive after using the sell command | sellme.command.sell.check | c |
+`Add` | Adds the item in hand to the list of current prices | sellme.command.sell.add | |
+`Overwrite` | Overwrites the item price in the list of current prices | sellme.command.sell.overwrite ||

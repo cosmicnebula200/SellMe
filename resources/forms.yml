@@ -9,6 +9,12 @@ sell-list:
   title: "&l&dSell List"
   label: "&7[&a*&7]&e {ITEM}&e: &a{PRICE}"
 
+check-form:
+  title: "&l&dCheck Form"
+  hand: "&l&dCheck Hand"
+  all: "&l&dCheckl All"
+  inv: "&l&dCheck Inventory"
+
 autosell-form:
   title: "&l&dAutoSell Form"
   on: "&l&dOn"
