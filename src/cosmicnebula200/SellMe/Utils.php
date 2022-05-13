@@ -2,8 +2,8 @@
 
 namespace cosmicnebula200\SellMe;
 
-use pocketmine\block\VanillaBlocks;
 use pocketmine\item\Item;
+use pocketmine\item\ItemFactory;
 use pocketmine\player\Player;
 
 class Utils
@@ -27,4 +27,11 @@ class Utils
         return 0;
     }
 
+    public static function getName(string $data): string
+    {
+        $id = explode(":", $data)[0] ?? $data;
+        $meta = explode(":", $data)[1] ?? 0;
+        $item = ItemFactory::getInstance()->get($id, $meta);
+        return $item->getName();
+    }
 }

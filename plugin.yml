@@ -15,6 +15,9 @@ permissions:
   sellme.command.sell.inv:
     default: true
     description: with this permission the player can sell his/her inventory
+  sellme.command.sell.list:
+    default: true
+    description: with this permission the player can view sell listing
   sellme.command.autosell:
     default: true
     description: with this permission the player can toggle his autosell status
