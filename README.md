@@ -10,6 +10,10 @@ The currently offered features are as follows
 - AutoSell 
 - Item meta checks
 - Multiple sell modes (hand, all, inv)
+- List command which shows the list of all the prices of items.
+-  Check command which allows you to check the price of the items in your inventory.
+- Add command which allows you to add items to the price list.
+- Overwrite command which allows you to modify any item which is currently in the price list.
 
 # Permissions
 ```
