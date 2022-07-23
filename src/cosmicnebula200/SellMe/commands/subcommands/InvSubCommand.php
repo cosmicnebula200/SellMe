@@ -39,7 +39,9 @@ class InvSubCommand extends BaseSubCommand
         $sender->sendMessage(SellMe::$messages->getMessage('sell.inv',[
             'amount' => $amount
         ]));
-        SellMe::getInstance()->getEconomyProvider()->addToMoney($sender, $amount);
+	SellMe::getInstance()->getEconomyProvider()->addToMoney($sender, $amount, [
+		"item" => "all",
+	]);
     }
 
 }

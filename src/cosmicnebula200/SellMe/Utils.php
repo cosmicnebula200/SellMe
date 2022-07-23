@@ -14,7 +14,10 @@ class Utils
         $amount = self::getAmount($item);
         if ($amount === 0)
         return false;
-        SellMe::getInstance()->getEconomyProvider()->addToMoney($player, $amount * $item->getCount());
+	SellMe::getInstance()->getEconomyProvider()->addToMoney($player, $amount * $item->getCount(), [
+		"item" => $item->getVanillaName(),
+		"amount" => $item->getCount(),
+	]);
         return true;
     }
 
