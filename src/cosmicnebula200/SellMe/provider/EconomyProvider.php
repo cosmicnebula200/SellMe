@@ -11,6 +11,6 @@ abstract class  EconomyProvider
 
     abstract public function checkClass(): bool;
 
-    abstract public function addToMoney(Player $player, int $amount): void;
+    abstract public function addToMoney(Player $player, int $amount, array $labels): void;
 
 }

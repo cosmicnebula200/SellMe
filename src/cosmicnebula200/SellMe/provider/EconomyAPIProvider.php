@@ -20,7 +20,7 @@ class EconomyAPIProvider extends EconomyProvider
         return false;
     }
 
-    public function addToMoney(Player $player, int $amount): void
+    public function addToMoney(Player $player, int $amount, array $labels): void
     {
         EconomyAPI::getInstance()->addMoney($player, $amount);
     }
