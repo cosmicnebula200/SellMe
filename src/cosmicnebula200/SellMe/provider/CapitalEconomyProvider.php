@@ -34,10 +34,10 @@ class CapitalEconomyProvider extends EconomyProvider
         return false;
     }
 
-    public function addToMoney(Player $player, int $amount): void
+    public function addToMoney(Player $player, int $amount, array $labels): void
     {
         Capital::api('0.1.0',
-            function ($api) use ($player, $amount)
+            function ($api) use ($player, $amount, $labels)
             {
                 try {
                     yield from $api->addMoney(
@@ -45,7 +45,7 @@ class CapitalEconomyProvider extends EconomyProvider
                         $player,
                         $this->selector,
                         $amount,
-                        new LabelSet(["reason" => "selling items"]),
+                        new LabelSet($labels + ["reason" => "selling items"]),
                     );
                 }catch (CapitalException){
 
