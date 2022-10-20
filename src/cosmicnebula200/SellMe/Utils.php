@@ -23,10 +23,9 @@ class Utils
 
     public static function getAmount(Item $item): int
     {
-        if (SellMe::$prices->getNested("prices.{$item->getId()}:{$item->getMeta()}") != false)
-            return (int)SellMe::$prices->getNested("prices.{$item->getId()}:{$item->getMeta()}");
-        if (SellMe::$prices->getNested("prices.{$item->getId()}") !== false)
-            return (int)SellMe::$prices->getNested("prices.{$item->getId()}");
+        $string = $item->jsonSerialize();
+        if (SellMe::$prices->getNested("prices.$string") != false)
+            return (int)SellMe::$prices->getNested("prices.$string");
         return 0;
     }
 
@@ -60,7 +59,7 @@ class Utils
             ));
             return;
         }
-        $string = $item->getMeta() == 0 ? "{$item->getId()}" : "{$item->getId()}:{$item->getMeta()}";
+        $string = $item->jsonSerialize();
         SellMe::$prices->setNested("prices.$string", $price);
         SellMe::$prices->save();
         SellMe::$prices->reload();
