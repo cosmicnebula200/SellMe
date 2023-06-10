@@ -1,5 +1,5 @@
 # SellMe
-The Ultimate Sell plugin for PocketMine-MP 4
+The Ultimate Sell plugin for PocketMine-MP 5
 
 **What is SellMe?**
 - SellMe is a plugin which allows the items to be sold in exchange with money
