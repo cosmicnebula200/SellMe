@@ -37,12 +37,11 @@ class CheckSubCommand extends BaseSubCommand
                     $amount = Utils::getAmount($inv->getItemInHand());
                     if ($amount == 0)
                         break;
-                    $id = $inv->getItemInHand()->getId();
-                    $meta = $inv->getItemInHand()->getMeta();
+                    $vanillaName = $inv->getItemInHand()->getVanillaName();
                     $count = 0;
-                    foreach ($inv->getContents() as  $item)
+                    foreach ($inv->getContents() as $item)
                     {
-                        if ($item->getId() == $id and $item->getMeta() == $meta)
+                        if ($item->getVanillaName() === $vanillaName)
                             $count = $count + $item->getCount();
                     }
                     $price = $amount * $count;

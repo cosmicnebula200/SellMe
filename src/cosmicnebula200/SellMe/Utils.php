@@ -3,7 +3,6 @@
 namespace cosmicnebula200\SellMe;
 
 use pocketmine\item\Item;
-use pocketmine\item\ItemFactory;
 use pocketmine\player\Player;
 
 class Utils
@@ -23,19 +22,9 @@ class Utils
 
     public static function getAmount(Item $item): int
     {
-        if (SellMe::$prices->getNested("prices.{$item->getId()}:{$item->getMeta()}") != false)
-            return (int)SellMe::$prices->getNested("prices.{$item->getId()}:{$item->getMeta()}");
-        if (SellMe::$prices->getNested("prices.{$item->getId()}") !== false)
-            return (int)SellMe::$prices->getNested("prices.{$item->getId()}");
+        if (SellMe::$prices->getNested("prices.{$item->getVanillaName()}") !== false)
+            return (int)SellMe::$prices->getNested("prices.{$item->getVanillaName()}");
         return 0;
-    }
-
-    public static function getName(string $data): string
-    {
-        $id = explode(":", $data)[0] ?? $data;
-        $meta = explode(":", $data)[1] ?? 0;
-        $item = ItemFactory::getInstance()->get($id, $meta);
-        return $item->getName();
     }
     
     public static function addToPrices(Player $player, int $price, bool $overwrite = false): void
@@ -60,8 +49,7 @@ class Utils
             ));
             return;
         }
-        $string = $item->getMeta() == 0 ? "{$item->getId()}" : "{$item->getId()}:{$item->getMeta()}";
-        SellMe::$prices->setNested("prices.$string", $price);
+        SellMe::$prices->setNested("prices.{$item->getVanillaName()}", $price);
         SellMe::$prices->save();
         SellMe::$prices->reload();
         $player->sendMessage(SellMe::$messages->getMessage(

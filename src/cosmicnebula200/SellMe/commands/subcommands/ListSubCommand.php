@@ -26,14 +26,13 @@ class ListSubCommand extends BaseSubCommand
             if ($data === null)
                 return;
         });
-        foreach (SellMe::$prices->getNested('prices') as $items => $price) {
-            $name = Utils::getName(strval($items));
+        foreach (SellMe::$prices->getNested('prices') as $item => $price) {
             $search = [
                 '{ITEM}',
                 '{PRICE}'
             ];
             $replace = [
-                $name,
+                $item,
                 $price
             ];
             $label = str_replace($search, $replace, SellMe::$forms->getNested('sell-list.label', '&7[&a*&7]&e {ITEM} &e: &a{PRICE}'));
