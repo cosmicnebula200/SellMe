@@ -28,13 +28,11 @@ class AllSubCommand extends BaseSubCommand
             $sender->sendMessage(SellMe::$messages->getMessage('sell.error'));
             return;
         }
-        $id = $inv->getItemInHand()->getId();
-        $name = $inv->getItemInHand()->getName();
-        $meta = $inv->getItemInHand()->getMeta();
+        $vanillaName = $inv->getItemInHand()->getVanillaName();
         $count = 0;
         foreach ($inv->getContents() as $slot => $item)
         {
-            if ($item->getId() == $id and $item->getMeta() == $meta)
+            if ($item->getVanillaName() === $vanillaName)
             {
                 Utils::sellItem($sender, $item);
                 $count = $count + $item->getCount();
@@ -43,7 +41,7 @@ class AllSubCommand extends BaseSubCommand
         }
         $totalAmount = $amount * $count;
         $sender->sendMessage(SellMe::$messages->getMessage('sell.all', [
-            'item' => $name,
+            'item' => $vanillaName,
             'count' => $count,
             'amount' => $totalAmount
         ]));
