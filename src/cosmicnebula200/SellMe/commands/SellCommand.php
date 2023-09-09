@@ -29,13 +29,14 @@ class SellCommand extends BaseCommand
             'sellme.command.sell.add;'.
             'sellme.command.sell.check'
         );
-        $this->registerSubCommand(new HandSubCommand('hand', 'Sells the item which is held by the user', ['h']));
-        $this->registerSubCommand(new AllSubCommand('all', 'Sells the items in inventory which are similar to the one in the users hands', ['a']));
-        $this->registerSubCommand(new InvSubCommand('inv', 'Sells all the items in the inventory of the user', ['inventory', 'i']));
-        $this->registerSubCommand(new ListSubCommand('list', 'View available items/prices', ['l']));
-        $this->registerSubCommand(new CheckSubCommand('check', 'Checks the amount that you can receive after using the sell command', ['c']));
-        $this->registerSubCommand(new AddSubCommand('add', 'Adds the item in hand to the list of current prices'));
-        $this->registerSubCommand(new OverwriteSubCommand('overwrite', 'Overwrites the item price in the list of current prices'));
+        $plugin = SellMe::getInstance();
+        $this->registerSubCommand(new HandSubCommand($plugin, 'hand', 'Sells the item which is held by the user', ['h']));
+        $this->registerSubCommand(new AllSubCommand($plugin, 'all', 'Sells the items in inventory which are similar to the one in the users hands', ['a']));
+        $this->registerSubCommand(new InvSubCommand($plugin, 'inv', 'Sells all the items in the inventory of the user', ['inventory', 'i']));
+        $this->registerSubCommand(new ListSubCommand($plugin, 'list', 'View available items/prices', ['l']));
+        $this->registerSubCommand(new CheckSubCommand($plugin, 'check', 'Checks the amount that you can receive after using the sell command', ['c']));
+        $this->registerSubCommand(new AddSubCommand($plugin, 'add', 'Adds the item in hand to the list of current prices'));
+        $this->registerSubCommand(new OverwriteSubCommand($plugin, 'overwrite', 'Overwrites the item price in the list of current prices'));
     }
 
     public function onRun(CommandSender $sender, string $aliasUsed, array $args): void

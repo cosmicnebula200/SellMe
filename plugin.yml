@@ -2,8 +2,8 @@ name: SellMe
 author: cosmicnebula200
 api: 4.0.0
 main: cosmicnebula200\SellMe\SellMe
-version: 1.1.0
-softdepend: ['BedrockEconomy', 'Capital', 'EconomyAPI']
+version: 2.0.1
+softdepend: ['BedrockEconomy']
 
 permissions:
   sellme.command.sell.hand:

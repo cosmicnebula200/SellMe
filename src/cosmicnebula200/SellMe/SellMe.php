@@ -2,6 +2,7 @@
 
 namespace cosmicnebula200\SellMe;
 
+use CortexPE\Commando\exception\HookAlreadyRegistered;
 use CortexPE\Commando\PacketHooker;
 use cosmicnebula200\SellMe\commands\AutoSellCommand;
 use cosmicnebula200\SellMe\commands\SellCommand;
@@ -33,6 +34,9 @@ class SellMe extends PluginBase
         self::$instance = $this;
     }
 
+    /**
+     * @throws HookAlreadyRegistered
+     */
     public function onEnable(): void
     {
         $this->saveDefaultConfig();
@@ -40,17 +44,17 @@ class SellMe extends PluginBase
         $this->saveResource('forms.yml');
         $this->saveResource('messages.yml');
 
-        $this->economyProvider = match (strtolower($this->getConfig()->get('economy-provider')))
+        $provider = $this->getConfig()->get('economy-provider');
+
+        $this->economyProvider = match (strtolower($provider))
         {
             "bedrockeconomy" => new BedrockEconomyProvider(),
-            "capital" => new CapitalEconomyProvider(),
-            "economyapi" => new EconomyAPIProvider(),
             default => null
         };
 
         if ($this->economyProvider == null)
         {
-            $this->yeet($this->getConfig()->get('economy-provider'));
+            $this->yeet($provider);
             return;
         }
         if (!$this->economyProvider->checkClass())

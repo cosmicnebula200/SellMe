@@ -3,11 +3,5 @@
 # Economy provider
 # the possible values for this currently are
 # 1. BedrockEconomy
-# 2. Capital
-# 3. EconomyAPI
+# If more Economy providers are added for PocketMine 5 then I will update it
 economy-provider: BedrockEconomy
-
-# DO NOT TOUCH IF YOU DONT KNOW WHAT YOU ARE DOING
-# BY DEFAULT SELECTOR ENTRY IS EMPTY
-capital-settings:
-  selector:
