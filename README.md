@@ -1,12 +1,12 @@
 # SellMe
-The Ultimate Sell plugin for PocketMine-MP 4
+The Ultimate Sell plugin for PocketMine-MP 5
 
 **What is SellMe?**
 - SellMe is a plugin which allows the items to be sold in exchange with money
 
 # Features
 The currently offered features are as follows
-- Multiple Economy providers like EconomyAPI, BedrockEconomy and Capital
+- Currently only supports BedrockEconomy due to it being the only economy plugin for PocketMine 5 (requests for new Providers to be implemented)
 - AutoSell 
 - Item meta checks
 - Multiple sell modes (hand, all, inv)

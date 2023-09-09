@@ -7,6 +7,7 @@ use cosmicnebula200\SellMe\SellMe;
 use cosmicnebula200\SellMe\Utils;
 use pocketmine\block\VanillaBlocks;
 use pocketmine\command\CommandSender;
+use pocketmine\item\StringToItemParser;
 use pocketmine\player\Player;
 
 class AllSubCommand extends BaseSubCommand
@@ -28,13 +29,13 @@ class AllSubCommand extends BaseSubCommand
             $sender->sendMessage(SellMe::$messages->getMessage('sell.error'));
             return;
         }
-        $id = $inv->getItemInHand()->getId();
-        $name = $inv->getItemInHand()->getName();
-        $meta = $inv->getItemInHand()->getMeta();
+        $itemInHand = $sender->getInventory()->getItemInHand();
+        $alias = StringToItemParser::getInstance()->lookupAliases($itemInHand)[0];
+        $nbt = $itemInHand->getNamedTag();
         $count = 0;
         foreach ($inv->getContents() as $slot => $item)
         {
-            if ($item->getId() == $id and $item->getMeta() == $meta)
+            if (in_array($alias, StringToItemParser::getInstance()->lookupAliases($item)) and $item->getNamedTag() == $nbt)
             {
                 Utils::sellItem($sender, $item);
                 $count = $count + $item->getCount();
@@ -43,7 +44,7 @@ class AllSubCommand extends BaseSubCommand
         }
         $totalAmount = $amount * $count;
         $sender->sendMessage(SellMe::$messages->getMessage('sell.all', [
-            'item' => $name,
+            'item' => $itemInHand->getName(),
             'count' => $count,
             'amount' => $totalAmount
         ]));

@@ -2,8 +2,9 @@
 
 namespace cosmicnebula200\SellMe;
 
+use JsonException;
 use pocketmine\item\Item;
-use pocketmine\item\ItemFactory;
+use pocketmine\item\StringToItemParser;
 use pocketmine\player\Player;
 
 class Utils
@@ -14,30 +15,24 @@ class Utils
         $amount = self::getAmount($item);
         if ($amount === 0)
         return false;
-	SellMe::getInstance()->getEconomyProvider()->addToMoney($player, $amount * $item->getCount(), [
-		"item" => $item->getVanillaName(),
-		"amount" => $item->getCount(),
-	]);
+        SellMe::getInstance()->getEconomyProvider()->addToMoney($player, $amount * $item->getCount(), [
+            "item" => $item->getVanillaName(),
+            "amount" => $item->getCount(),
+        ]);
         return true;
     }
 
     public static function getAmount(Item $item): int
     {
-        if (SellMe::$prices->getNested("prices.{$item->getId()}:{$item->getMeta()}") != false)
-            return (int)SellMe::$prices->getNested("prices.{$item->getId()}:{$item->getMeta()}");
-        if (SellMe::$prices->getNested("prices.{$item->getId()}") !== false)
-            return (int)SellMe::$prices->getNested("prices.{$item->getId()}");
+        $alias = StringToItemParser::getInstance()->lookupAliases($item)[0];
+        if (SellMe::$prices->getNested("prices." . $alias))
+            return (int)SellMe::$prices->getNested("prices." . $alias);
         return 0;
     }
 
-    public static function getName(string $data): string
-    {
-        $id = explode(":", $data)[0] ?? $data;
-        $meta = explode(":", $data)[1] ?? 0;
-        $item = ItemFactory::getInstance()->get($id, $meta);
-        return $item->getName();
-    }
-    
+    /**
+     * @throws JsonException
+     */
     public static function addToPrices(Player $player, int $price, bool $overwrite = false): void
     {
         $item = $player->getInventory()->getItemInHand();
@@ -60,7 +55,7 @@ class Utils
             ));
             return;
         }
-        $string = $item->getMeta() == 0 ? "{$item->getId()}" : "{$item->getId()}:{$item->getMeta()}";
+        $string = StringToItemParser::getInstance()->lookupAliases($item)[0];
         SellMe::$prices->setNested("prices.$string", $price);
         SellMe::$prices->save();
         SellMe::$prices->reload();

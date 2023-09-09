@@ -6,6 +6,7 @@ use CortexPE\Commando\BaseSubCommand;
 use cosmicnebula200\SellMe\SellMe;
 use cosmicnebula200\SellMe\Utils;
 use pocketmine\command\CommandSender;
+use pocketmine\item\StringToItemParser;
 use pocketmine\player\Player;
 use pocketmine\utils\TextFormat;
 use Vecnavium\FormsUI\SimpleForm;
@@ -37,13 +38,14 @@ class CheckSubCommand extends BaseSubCommand
                     $amount = Utils::getAmount($inv->getItemInHand());
                     if ($amount == 0)
                         break;
-                    $id = $inv->getItemInHand()->getId();
-                    $meta = $inv->getItemInHand()->getMeta();
+                    $itemInHand = $player->getInventory()->getItemInHand();
+                    $alias = StringToItemParser::getInstance()->lookupAliases($itemInHand)[0];
+                    $nbt = $itemInHand->getNamedTag();
                     $count = 0;
                     foreach ($inv->getContents() as  $item)
                     {
-                        if ($item->getId() == $id and $item->getMeta() == $meta)
-                            $count = $count + $item->getCount();
+                        if (in_array($alias, StringToItemParser::getInstance()->lookupAliases($item)) and $item->getNamedTag() === $nbt)
+                            $count += $item->getCount();
                     }
                     $price = $amount * $count;
                     break;

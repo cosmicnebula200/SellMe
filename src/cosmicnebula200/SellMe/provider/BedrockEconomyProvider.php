@@ -6,7 +6,7 @@ use cooldogedev\BedrockEconomy\api\BedrockEconomyAPI;
 use cooldogedev\BedrockEconomy\BedrockEconomy;
 use pocketmine\player\Player;
 
-class BedrockEconomyProvider extends EconomyProvider
+class BedrockEconomyProvider implements EconomyProvider
 {
 
     public function getName(): string

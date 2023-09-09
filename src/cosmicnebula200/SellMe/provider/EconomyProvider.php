@@ -4,13 +4,13 @@ namespace cosmicnebula200\SellMe\provider;
 
 use pocketmine\player\Player;
 
-abstract class  EconomyProvider
+interface EconomyProvider
 {
 
-    abstract public function getName(): string;
+    public function getName(): string;
 
-    abstract public function checkClass(): bool;
+    public function checkClass(): bool;
 
-    abstract public function addToMoney(Player $player, int $amount, array $labels): void;
+    public function addToMoney(Player $player, int $amount, array $labels): void;
 
 }
